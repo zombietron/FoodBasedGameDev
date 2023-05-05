@@ -1,0 +1,19 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 449d2f86510b2c641ae8aeb33eb95a2f, type: 3}
+  m_Name: Sandwich_Ammo
+  m_EditorClassIdentifier: 
+  foodType: 4
+  foodMesh: {fileID: 5370329103413764276, guid: 69c2b0700432a5248bd355ffd77f2559,
+    type: 3}
+  damageValue: 5
+  maxAmmoAmt: 10

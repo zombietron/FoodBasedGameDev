@@ -5,17 +5,27 @@ using UnityEngine.AI;
 
 public class SpawnController : MonoBehaviour
 {
+    [SerializeField] int spawnGap = 3;
+
+    public int SpawnGap
+    {
+        set { spawnGap = value; }
+        get { return spawnGap; }
+    }
+
     [SerializeField] List<GameObject> enemyPrefabs;
 
-    [SerializeField] int spawnGap;
+    
 
     [SerializeField] List<Transform> spawnPoints;
+    [SerializeField] WaveManager waveMgr;
+    [SerializeField] List<Transform> enemiesInScene;
 
+    bool waveComplete = false;
     GameObject spawnedEnemies;
     int spawnLocationIndex = 0;
 
-    //temporary until GameManager exists for testing
-    public bool gameActive=true;
+
 
     /*
      * To do
@@ -28,34 +38,42 @@ public class SpawnController : MonoBehaviour
     {
         spawnedEnemies = new GameObject();
         spawnedEnemies.name = "Spawned Enemies";
+        enemiesInScene = new List<Transform>();
     }
-    void Start()
-    {
 
-        StartCoroutine(SpawnMonstersWithGap(3));
-        //Debug.Log("SpawnPoints" + spawnPoints.Count);
-    }
 
 
     IEnumerator SpawnMonstersWithGap(int gap)
     {
-    
+        Debug.Log("SpawnMonstersWithGap Coroutine Started at: " + Time.time);
         
-        while(gameActive)
+        while(GameManager.Instance.gameState == GameManager.GameState.gameRunning)
         {
-            yield return new WaitForSeconds(spawnGap);
-            var spawnedEnemy = Instantiate<GameObject>(enemyPrefabs[Random.Range(0,enemyPrefabs.Count)]);
-            //This is a solution for the spawned enemy not hitting the correct point due to a navmesh conflict
-            // we need to clean this up and make it an event based system.
-            spawnedEnemy.GetComponent<NavMeshAgent>().enabled = false;
-            spawnedEnemy.transform.position = spawnPoints[spawnLocationIndex].position;
-            //same here
-            spawnedEnemy.GetComponent<NavMeshAgent>().enabled = true;
+            
+            yield return new WaitForSeconds(gap);
 
-            spawnLocationIndex = spawnLocationIndex >= spawnPoints.Count - 1 ? 0: spawnLocationIndex + 1;
-            //spawnedEnemy.transform.parent = spawnedEnemies.transform;
+            if (enemiesInScene.Count < waveMgr.wave.maxEnemiesSpawnedDuringWave && !waveMgr.wave.waveComplete)
+            {
+                var spawnedEnemy = Instantiate<GameObject>(enemyPrefabs[Random.Range(0, enemyPrefabs.Count)],spawnedEnemies.transform);
+                enemiesInScene.Add(spawnedEnemy.transform);
+                waveMgr.wave.AddEnemyToWaveCount();
+                //This is a solution for the spawned enemy not hitting the correct point due to a navmesh conflict
+                // we need to clean this up and make it an event based system.
+                spawnedEnemy.GetComponent<NavMeshAgent>().enabled = false;
+                spawnedEnemy.transform.position = spawnPoints[spawnLocationIndex].position;
+                //same here
+                spawnedEnemy.GetComponent<NavMeshAgent>().enabled = true;
 
+                spawnLocationIndex = spawnLocationIndex >= spawnPoints.Count - 1 ? 0 : spawnLocationIndex + 1;
+                //spawnedEnemy.transform.parent = spawnedEnemies.transform;
+                yield return new WaitForSeconds(gap);
+            }
+            else
+                yield return new WaitUntil(() => enemiesInScene.Count < waveMgr.wave.maxEnemiesSpawnedDuringWave);
+
+            
         }
+
         yield break;
 
     }
@@ -63,5 +81,10 @@ public class SpawnController : MonoBehaviour
     public void StartMonsterWithGapCoRoutine(int gap)
     {
         StartCoroutine(SpawnMonstersWithGap(gap));
+    }
+
+    public void StopSpawning()
+    {
+        StopCoroutine(SpawnMonstersWithGap(spawnGap));
     }
 }

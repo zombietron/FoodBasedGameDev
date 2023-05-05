@@ -10,6 +10,8 @@ public class GameManager : MonoBehaviour
 
     public static GameManager Instance { get; private set; }
 
+   
+
     public enum GameState
     {
         menu,
@@ -35,4 +37,6 @@ public class GameManager : MonoBehaviour
     {
         
     }
+
+    
 }

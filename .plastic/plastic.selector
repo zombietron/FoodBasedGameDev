@@ -1,4 +1,4 @@
 repository "FoodBasedGameDev@UnityEducation@cloud"
   path "/"
-    br "/main"
-    co "/main"
+    smartbranch "/main"    
+     

@@ -1,0 +1,19 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 449d2f86510b2c641ae8aeb33eb95a2f, type: 3}
+  m_Name: Taco_Ammo
+  m_EditorClassIdentifier: 
+  foodType: 1
+  foodMesh: {fileID: 2087945107681448215, guid: a83c46ccea5c4b340ac2e0103c575a6c,
+    type: 3}
+  damageValue: 6
+  maxAmmoAmt: 10

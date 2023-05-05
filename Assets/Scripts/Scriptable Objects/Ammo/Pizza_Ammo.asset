@@ -1,0 +1,19 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 449d2f86510b2c641ae8aeb33eb95a2f, type: 3}
+  m_Name: Pizza_Ammo
+  m_EditorClassIdentifier: 
+  foodType: 3
+  foodMesh: {fileID: 8771419009265247666, guid: a81c57005470b614188f9fbd48379d7c,
+    type: 3}
+  damageValue: 15
+  maxAmmoAmt: 1
