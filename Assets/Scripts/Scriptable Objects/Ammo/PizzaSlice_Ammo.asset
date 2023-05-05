@@ -10,9 +10,10 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 449d2f86510b2c641ae8aeb33eb95a2f, type: 3}
-  m_Name: HotDog_Ammo
+  m_Name: PizzaSlice_Ammo
   m_EditorClassIdentifier: 
-  foodMesh: {fileID: 8959947128519048034, guid: b7681bf94c8997e44ab7bddea3d74f76,
+  foodType: 5
+  foodMesh: {fileID: 1154712438862004672, guid: ae70d198ee7114f489b6ccab3d59b2bb,
     type: 3}
-  damageValue: 1
-  maxAmmoAmt: 10
+  damageValue: 3
+  maxAmmoAmt: 1

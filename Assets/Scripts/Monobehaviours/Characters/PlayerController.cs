@@ -1,6 +1,4 @@
-using System;
 using System.Collections.Generic;
-using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using Object = UnityEngine.Object;
@@ -13,19 +11,19 @@ namespace Monobehaviours.Characters
         [SerializeField] private Rigidbody rb;
         [SerializeField] private float moveSpeed;
         [SerializeField] private float throwForce;
-        [SerializeField] private GameObject placeHolderPizzaToThrow;
+        [SerializeField] private AmmoInventory characterAmmoInventory;
+        [SerializeField] private Dictionary<string, int> characterAmmoDict;
         [SerializeField] private GameObject placeHolderPizzaStall;
         public bool stopPlayer = false;
-
-        private List<GameObject> pizzasToThrow;
         private Vector2 move;
         private Vector3 moveForce;
-        private Vector2 shoot;
         private bool isInteractable;
         void Start()
         {
             rb = GetComponent<Rigidbody>();
-            pizzasToThrow = new List<GameObject>();
+            characterAmmoInventory = GetComponent<AmmoInventory>();
+            characterAmmoDict = characterAmmoInventory.GetAmmoDict();
+
         }
 
         void OnMove(InputValue value)
@@ -44,11 +42,11 @@ namespace Monobehaviours.Characters
         private void OnInteract()
         {
             if (!isInteractable) return;
-            var go = Object.Instantiate(placeHolderPizzaToThrow, transform, true);
-            if (go == null) return;
-            pizzasToThrow.Add(go);
-            go.transform.position = transform.position;
-            go.SetActive(false);
+            //var go = Object.Instantiate(placeHolderPizzaToThrow, transform, true);
+            //if (go == null) return;
+            Debug.Log(characterAmmoInventory.AddAmmoToDict("pizza", 1));
+            //go.transform.position = transform.position;
+            //go.SetActive(false);
             Debug.Log("Triggering Interact");
 
 
@@ -61,30 +59,28 @@ namespace Monobehaviours.Characters
 
         void OnThrow()
         {
-            var go = pizzasToThrow[0];
-            go.SetActive(true);
-            var goRb = go.GetComponent<Rigidbody>();
-            Vector3 throwDirection = new Vector3(shoot.x, 0, shoot.y);
-            Vector3 throwVector = throwDirection * throwForce;
-            goRb.velocity = goRb.transform.TransformDirection(throwVector);
+            //var go = pizzasToThrow[0];
+            //go.SetActive(true);
+            //var goRb = go.GetComponent<Rigidbody>();
+            //goRb.velocity = Vector3.forward * throwForce;
             isInteractable = false;
         }
 
         void OnLook(InputValue value)
         {
-            shoot = value.Get<Vector2>();
+            //TODO: Aim to shoot maybe?
         }
 
         private void FixedUpdate()
         {
             rb.velocity = moveForce * moveSpeed;
-            /*if (isInteractable)
-            {
-                foreach (var pizza in pizzasToThrow)
-                {
-                    pizza.transform.position = transform.position;
-                }   
-            }*/
+            //if (isInteractable)
+            //{
+            //    foreach (var pizza in pizzasToThrow)
+            //    {
+            //        pizza.transform.position = transform.position;
+            //    }   
+            //}
 
             if (!stopPlayer) return;
             rb.velocity = Vector3.zero;

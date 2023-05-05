@@ -289,8 +289,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   rb: {fileID: 0}
   moveSpeed: 10
-  throwForce: 1000
-  placeHolderPizzaToThrow: {fileID: 606568652}
+  throwForce: 50
+  characterAmmoInventory: {fileID: 0}
   placeHolderPizzaStall: {fileID: 5122219780516033514}
   stopPlayer: 0
 --- !u!54 &337512928
@@ -400,6 +400,37 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1bcdb754dff7e904a918ef4e0fbd86b1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!1 &430864827
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 430864828}
+  m_Layer: 0
+  m_Name: GameObject
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &430864828
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 430864827}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 1.5389867, y: 1.0273031, z: 6.7664843}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 15
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &483513443
 GameObject:
   m_ObjectHideFlags: 0
@@ -585,12 +616,6 @@ Transform:
   m_Father: {fileID: 823075197}
   m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!1 &606568652 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 3328620985819938782, guid: 1f984418f417b482f93d15d0a2ae9c89,
-    type: 3}
-  m_PrefabInstance: {fileID: 2742428830888575706}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1 &666018453
 GameObject:
   m_ObjectHideFlags: 0
@@ -726,7 +751,7 @@ MonoBehaviour:
   rb: {fileID: 0}
   moveSpeed: 25
   throwForce: 0
-  placeHolderPizzaToThrow: {fileID: 0}
+  characterAmmoInventory: {fileID: 0}
   placeHolderPizzaStall: {fileID: 0}
   stopPlayer: 0
 --- !u!54 &699481559
@@ -2679,6 +2704,12 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 3834543485832097549, guid: fdcffd257d644834ea825fd16fc8fbb7,
+        type: 3}
+      propertyPath: ammoContainer
+      value: 
+      objectReference: {fileID: 11400000, guid: 7d09bf2bc39a597458e5b70c0fe26104,
+        type: 2}
     - target: {fileID: 5359069404705864245, guid: fdcffd257d644834ea825fd16fc8fbb7,
         type: 3}
       propertyPath: m_Name
