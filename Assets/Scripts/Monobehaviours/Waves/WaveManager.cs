@@ -17,21 +17,20 @@ public class WaveManager : MonoBehaviour
 
     public SpawnController spawnController;
 
-    public delegate void OnWaveStateChange(WaveState state);
+    public delegate void ChangeWaveState(WaveState state);
 
-    public static OnWaveStateChange onWaveStateChange;
+    public static ChangeWaveState changeWaveState;
 
     private void Start()
     {
-        onWaveStateChange += HandleWaveChange;
-        onWaveStateChange.Invoke(WaveState.preWave);
+        changeWaveState += UpdateWaveState;
     }
 
-    public void HandleWaveChange(WaveState state)
+    public void UpdateWaveState(WaveState newState)
     {
-        waveState = state;
+        waveState = newState;
         Debug.Log("WaveState changed to " + waveState);
-        switch (state) 
+        switch (waveState) 
         {
             case WaveState.preWave:
                 spawnController.StopSpawning();
@@ -42,8 +41,7 @@ public class WaveManager : MonoBehaviour
                 else
                     wave.ProgressWave();
 
-                waveState = WaveState.running;
-                onWaveStateChange.Invoke(waveState);
+                changeWaveState.Invoke(WaveState.running);
                 break;
 
             case WaveState.running:
@@ -57,6 +55,6 @@ public class WaveManager : MonoBehaviour
 
     private void OnDestroy()
     {
-        onWaveStateChange -= HandleWaveChange;
+        changeWaveState -= UpdateWaveState;
     }
 }

@@ -15,11 +15,15 @@ public class SpawnController : MonoBehaviour
 
     [SerializeField] List<GameObject> enemyPrefabs;
 
-    
+
 
     [SerializeField] List<Transform> spawnPoints;
     [SerializeField] WaveManager waveMgr;
     [SerializeField] List<Transform> enemiesInScene;
+    public List<Transform> EnemiesInScene
+    {
+        get { return enemiesInScene; }
+    }
 
     bool waveComplete = false;
     GameObject spawnedEnemies;
@@ -28,10 +32,9 @@ public class SpawnController : MonoBehaviour
 
 
     /*
-     * To do
-     * Hook Function up to GameManager to listen for game state
-     * Register spawned enemies with game manager for wave progression
-     * profit?
+     * WaveManager now connected to GameManager. The game manager tells 
+     * the wave manager when its time to spawn a wave which then
+     * tells the SpawnController how many and where
     */
     // Start is called before the first frame update
     private void Awake()
@@ -41,7 +44,13 @@ public class SpawnController : MonoBehaviour
         enemiesInScene = new List<Transform>();
     }
 
-
+/*    private void Update()
+    {
+        if(enemiesInScene.Count <=0 && waveMgr.wave.waveComplete)
+        {
+            WaveManager.changeWaveState(WaveManager.WaveState.preWave);
+        }
+    }*/
 
     IEnumerator SpawnMonstersWithGap(int gap)
     {
@@ -86,5 +95,14 @@ public class SpawnController : MonoBehaviour
     public void StopSpawning()
     {
         StopCoroutine(SpawnMonstersWithGap(spawnGap));
+    }
+
+    public void RemoveDestroyedEnemy( Transform enemyTrans)
+    {
+        enemiesInScene.Remove(enemyTrans);
+        if(enemiesInScene.Count == 0)
+        {
+            WaveManager.changeWaveState(WaveManager.WaveState.preWave);
+        }
     }
 }

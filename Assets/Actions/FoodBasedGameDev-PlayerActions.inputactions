@@ -287,7 +287,7 @@
                     "name": "",
                     "id": "5541a9b9-0723-4e13-b6d1-efaee4b215de",
                     "path": "<Keyboard>/f",
-                    "interactions": "",
+                    "interactions": "Hold(duration=1)",
                     "processors": "",
                     "groups": "Keyboard&Mouse",
                     "action": "Interact",

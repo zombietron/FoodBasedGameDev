@@ -19,6 +19,11 @@ public class Ammo : ScriptableObject
 
     [SerializeField]
     private int maxAmmoAmt;
+
+    public int MaxAmmoAmt () 
+    { 
+        return maxAmmoAmt; 
+    }
 }
 
 public enum FoodType { hotDog, taco, pie, pizza, sandwich, pizzaSlice };

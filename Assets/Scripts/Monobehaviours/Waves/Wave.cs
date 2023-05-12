@@ -2,8 +2,8 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-
-public class Wave: MonoBehaviour
+[RequireComponent(typeof(WaveManager))]
+public class Wave : MonoBehaviour
 {
 
     [Tooltip("Use these to initialize your first wave")]
@@ -12,13 +12,13 @@ public class Wave: MonoBehaviour
     public float waveTime { private set; get; }
     public int waveNum { private set; get; }
     public int maxEnemiesSpawnedDuringWave { private set; get; }
+    public int enemiesSpawnedDuringWave { private set; get; }
     public bool waveComplete { private set; get; }
 
 
-
-    public int currentEnemiesSpawned { private set; get; }
-
-
+    [SerializeField] SpawnController spawnController;
+ 
+    
 
     public void InitFirstWave()
     {
@@ -43,10 +43,11 @@ public class Wave: MonoBehaviour
     
     public void AddEnemyToWaveCount()
     {
-        currentEnemiesSpawned++;
-        if(currentEnemiesSpawned >= enemyCount)
+        enemiesSpawnedDuringWave++;
+        if(enemiesSpawnedDuringWave >= enemyCount)  
         {
             waveComplete = true;
+            Debug.Log($"Wave {waveNum} is complete");
         }
     }
 

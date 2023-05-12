@@ -96,7 +96,7 @@ GameObject:
   - component: {fileID: 4821461192553333514}
   m_Layer: 0
   m_Name: PizzaStand
-  m_TagString: Untagged
+  m_TagString: pizza
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
