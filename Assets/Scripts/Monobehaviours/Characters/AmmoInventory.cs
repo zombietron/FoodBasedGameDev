@@ -1,32 +1,31 @@
-using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 
 public class AmmoInventory : MonoBehaviour
 {
-    private Dictionary<string, int> ammoDictionary = new Dictionary<string, int>();
-    [SerializeField]
-    private AmmoContainer ammoContainer;
+	//ammo inventory handles anything that goes into adding or subtracting ammo
+	private readonly Dictionary<FoodType, int> ammoDictionary = new();
 
-    public Dictionary<string,int> GetAmmoDict()
-    {
-        return ammoDictionary;
-    }
+	[SerializeField]
+	private AmmoContainer ammoContainer;
 
-    public bool AddAmmoToDict(string key, int val)
-    {
-        bool added = ammoDictionary.TryAdd(key, val);
-        return added;
-    }
+	public int this[FoodType key]
+	{
+		get { return ammoDictionary.ContainsKey(key) ? ammoDictionary[key] : 0; }
+	}
 
-    private void Start()
-    {
-        foreach (var item in ammoContainer.ammoList)
-        {
-            ammoDictionary.Add(item.GetFoodType().ToString(), 0);
-            Debug.Log($"Added {item.GetFoodType()} to dict");
-        }
+	public bool AddAmmo(FoodType key, int val)
+	{
+		var maxAmmo = ammoContainer.ammoList.FirstOrDefault(a => a.GetFoodType() == key);
+		int maxAmmoAmt = maxAmmo == null ? 0 : maxAmmo.MaxAmmoAmt;
 
-        
-    }
+		if (ammoDictionary.ContainsKey(key))
+		{
+			ammoDictionary[key] = System.Math.Min(ammoDictionary[key] + val, maxAmmoAmt);
+			return true;
+		}
+		else
+			return ammoDictionary.TryAdd(key, System.Math.Min(val, maxAmmoAmt));
+	}
 }
