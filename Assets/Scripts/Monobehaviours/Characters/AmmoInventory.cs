@@ -31,7 +31,7 @@ public class AmmoInventory : MonoBehaviour
 
     }
 
-    public void UpdateAmmoInventory(Ammo ammoType, int ammoAmt)
+    public FoodType UpdateAmmoInventory(Ammo ammoType, int ammoAmt)
     {
         Debug.Log("Update Ammo Inventory entered");
         //compare current ammo to max ammo allowed for type
@@ -45,10 +45,22 @@ public class AmmoInventory : MonoBehaviour
             ammoDictionary[ammoType.GetFoodType().ToString()] = maxAmmo;
             Debug.Log($"{ammoType.GetFoodType()} has been reloaded and has {ammoDictionary[ammoType.GetFoodType().ToString()]}");
         }
+
+        return ammoType.GetFoodType();
     }
 
-
-
+    public void ShootAndRemoveAmmoInventory(Ammo ammoType)
+    {
+        var currentAmmoAmount = ammoDictionary[ammoType.GetFoodType().ToString()];
+        if (currentAmmoAmount <= 0)
+        {
+            //Add no remaining ammo sound
+            return;
+        }
+        //add animation trigger here or player?
+        //add shooting sound here?
+        ammoDictionary[ammoType.GetFoodType().ToString()] = currentAmmoAmount - 1;
+    }
     //tryAddAmmo (ammo type, amount)
     //check dictionary, if valid, add, else do nothing
 }

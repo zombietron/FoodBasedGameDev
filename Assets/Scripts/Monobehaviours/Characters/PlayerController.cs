@@ -18,10 +18,14 @@ namespace Monobehaviours.Characters
         [SerializeField] private AmmoInventory characterAmmoInventory;
         [SerializeField] private Dictionary<string, int> characterAmmoDict;
         [SerializeField] private StallBehavior stallBehavior; //change to stall type; add identifier to each stall type 
+        [SerializeField] private float rotateSpeed;
         public bool stopPlayer = false;
-        private int currentAmmoCount; // not required in player controller anymore?
+        private int currentAmmoCount;
+        private List<string> allFoodTypes = new List<string>();// not required in player controller anymore?
         private Vector2 move;
         private Vector3 moveForce;
+        private string activeFoodTypeToThrow;
+        private float rotateDirection;
         private bool isInteractable;
 
         void Start()
@@ -29,12 +33,10 @@ namespace Monobehaviours.Characters
             rb = GetComponent<Rigidbody>();
             characterAmmoInventory = GetComponent<AmmoInventory>();
             characterAmmoDict = characterAmmoInventory.GetAmmoDict();
-
-        }
-
-        private void OnEnable()
-        {
-            //OnInteractAction +=OnInteract;
+            foreach (var key in characterAmmoDict.Keys)
+            {
+                allFoodTypes.Add(key); 
+            }
         }
 
         void OnMove(InputValue value)
@@ -45,33 +47,10 @@ namespace Monobehaviours.Characters
 
         public void OnInteract(InputValue value)
         {
-            Debug.Log("EVENT FIRED");
-            
+
             if (!isInteractable) return;
-            if(value.isPressed)
-            {
-                stallBehavior.StartAmmoPickupCycle();
-                //This should trigger Stallbehaviour to take over instead for HUD animation;
-                //can pass context actuated time by passing context control as an argument?
-            };
-            if(!value.isPressed)
-            {
-                stallBehavior.StopAmmoPickupCycle();
-            };
-            #region old temp code
-            //switch (stallType.tag)
-            //{
-            //    case "pizza":
-            //        characterAmmoInventory.AddAmmoToDict(stallType.tag, currentAmmoCount + 1);
-            //        return;
-            //    case "hotDog": return;
-            //    case "taco": return;
-            //    case "pie": return;
-            //}
-            //go.transform.position = transform.position;
-            //go.SetActive(false);
-            #endregion  
-            Debug.Log("Triggering Interact");
+            stallBehavior.StartAmmoPickupCycle(value.isPressed);
+            // trigger pick up animation?
         }
 
         private void OnTriggerEnter(Collider other)
@@ -80,9 +59,8 @@ namespace Monobehaviours.Characters
             stallBehavior = other.gameObject.GetComponent<StallBehavior>();
             stallBehavior.DisplayUseInstructions(true);
             stallBehavior.Inventory = characterAmmoInventory;
+            activeFoodTypeToThrow = stallBehavior.GetTableAmmoType().GetFoodType().ToString();
             isInteractable = true;
-            Debug.Log("IsInteractable: " + isInteractable);
-            //Debug.Log(""); //give control to StallBehaviour; StallBehavior updates the right ammotype in the inventory
         }
 
         private void OnTriggerExit(Collider other)
@@ -92,17 +70,27 @@ namespace Monobehaviours.Characters
             isInteractable = false;
         }
 
-        void OnToggle()
+        void OnToggle(InputValue value)
         {
             //TODO: Add Food projectile toggle code
+            foreach (var foodType in allFoodTypes)
+            {
+                if (foodType == activeFoodTypeToThrow) continue;
+                activeFoodTypeToThrow = foodType;
+                return;
+            }
+
+            Debug.Log("Active Food Type: " + activeFoodTypeToThrow); // will be easier to test once we have other tables and add other ammos
         }
 
+        void OnRotate(InputValue value)
+        {
+            Debug.Log("Triggering Rotate");
+            rotateDirection = value.Get<float>();
+        }
         void OnThrow()
         {
-            //var go = pizzasToThrow[0];
-            //go.SetActive(true);
-            //var goRb = go.GetComponent<Rigidbody>();
-            //goRb.velocity = Vector3.forward * throwForce;
+            //add throw animation here
             isInteractable = false;
         }
 
@@ -114,6 +102,7 @@ namespace Monobehaviours.Characters
         private void FixedUpdate()
         {
             rb.velocity = moveForce * moveSpeed; //change to updating transform instead
+            transform.Rotate(Vector3.up * (Time.deltaTime * rotateSpeed * rotateDirection));
             #region ammo transform follows player transform
             //if (isInteractable)
             //{

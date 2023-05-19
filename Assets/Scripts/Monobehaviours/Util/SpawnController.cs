@@ -15,8 +15,6 @@ public class SpawnController : MonoBehaviour
 
     [SerializeField] List<GameObject> enemyPrefabs;
 
-
-
     [SerializeField] List<Transform> spawnPoints;
     [SerializeField] WaveManager waveMgr;
     [SerializeField] List<Transform> enemiesInScene;
@@ -44,26 +42,26 @@ public class SpawnController : MonoBehaviour
         enemiesInScene = new List<Transform>();
     }
 
-/*    private void Update()
-    {
-        if(enemiesInScene.Count <=0 && waveMgr.wave.waveComplete)
+    /*    private void Update()
         {
-            WaveManager.changeWaveState(WaveManager.WaveState.preWave);
-        }
-    }*/
+            if(enemiesInScene.Count <=0 && waveMgr.wave.waveComplete)
+            {
+                WaveManager.changeWaveState(WaveManager.WaveState.preWave);
+            }
+        }*/
 
     IEnumerator SpawnMonstersWithGap(int gap)
     {
         Debug.Log("SpawnMonstersWithGap Coroutine Started at: " + Time.time);
-        
-        while(GameManager.Instance.gameState == GameManager.GameState.gameRunning)
+
+        while (GameManager.Instance.gameState == GameManager.GameState.gameRunning)
         {
-            
+
             yield return new WaitForSeconds(gap);
 
             if (enemiesInScene.Count < waveMgr.wave.maxEnemiesSpawnedDuringWave && !waveMgr.wave.waveComplete)
             {
-                var spawnedEnemy = Instantiate<GameObject>(enemyPrefabs[Random.Range(0, enemyPrefabs.Count)],spawnedEnemies.transform);
+                var spawnedEnemy = Instantiate<GameObject>(SelectEnemyType(), spawnedEnemies.transform);
                 enemiesInScene.Add(spawnedEnemy.transform);
                 waveMgr.wave.AddEnemyToWaveCount();
                 //This is a solution for the spawned enemy not hitting the correct point due to a navmesh conflict
@@ -80,11 +78,47 @@ public class SpawnController : MonoBehaviour
             else
                 yield return new WaitUntil(() => enemiesInScene.Count < waveMgr.wave.maxEnemiesSpawnedDuringWave);
 
-            
+
         }
 
         yield break;
 
+    }
+
+    public GameObject SelectEnemyType()
+    {
+        GameObject selectedEnemyType = null;
+        int randomNumber = Random.Range(0, 100);
+
+        switch(randomNumber)
+        {
+            
+            //case int n when n == 0:
+            //Debug.Log("I'd spawn a ghost here: {n}");
+            //break;
+            
+            
+            case int n when n >= 1 && n <= 5:
+                selectedEnemyType = enemyPrefabs[2]; //skele
+            break;
+            
+              
+            case int n when n > 5 && n <= 14:
+                selectedEnemyType = enemyPrefabs[1]; //vamp
+                break;
+            
+            //If the number is 0 to 80 
+            case int n when n > 14:
+                selectedEnemyType = enemyPrefabs[0]; //zombo
+                break;
+
+            default:
+                selectedEnemyType = enemyPrefabs[0]; //zombo
+                break;
+
+        }
+
+        return selectedEnemyType;
     }
 
     public void StartMonsterWithGapCoRoutine(int gap)

@@ -16,4 +16,4 @@ MonoBehaviour:
   foodMesh: {fileID: 8771419009265247666, guid: a81c57005470b614188f9fbd48379d7c,
     type: 3}
   damageValue: 15
-  maxAmmoAmt: 1
+  maxAmmoAmt: 50
