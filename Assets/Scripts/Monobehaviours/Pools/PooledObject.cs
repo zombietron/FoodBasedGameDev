@@ -32,9 +32,15 @@ public class PooledObject : MonoBehaviour
 
     }
     
-    //this will create the pool in OnEnable if the pool is not already 
-    //instantiated
-    //This uses the maxObjectPoolSize int to define number of objects
+    /// <summary>
+    /// InitObjectPool() Creates the the pool OnEnable if it isn't already
+    /// instantiated. Once this is done, it will release all objects back
+    /// to the pool so that they can be 
+    /// accessed by our other systems. 
+    /// The maxObjectPoolSize field in this class will decide how
+    /// large the pool is.
+    /// </summary>
+
     public void InitObjectPool()
     {
         for(int i = 0; i<60; i++)
@@ -51,35 +57,41 @@ public class PooledObject : MonoBehaviour
        
     }
 
-    /*This is called only when the pool already contains 
-     * the max number of objects, if it does, then the object 
-     * is destroyed instead of being released to the pool.
-     */
-
+    /// <summary>
+    ///This is called only when the pool already contains 
+    ///the max number of objects, if it does, then the object 
+    ///is destroyed instead of being released to the pool.
+    /// </summary>    
     private void OnDestroyPoolObject(GameObject obj)
     {
         Destroy(obj);
     }
 
-    /* This sends objects back to the pool, currently the object
-     * is simply deactivated
-     */
+    /// <summary>
+    ///     This sends objects back to the pool, 
+    ///     currently the object is simply deactivated
+    /// </summary>
+
     private void OnReturnedToPool(GameObject obj)
     {
         obj.SetActive(false);
     }
 
-    /*
-     * What happens when we take the object from the pool.
-     */
+/// <summary>
+/// This defines what happens to the GameObject that
+/// we take from our pool. 
+/// </summary>
+/// <param name="obj">The object we are taking from the pool</param>
     private void OnTakeFromPool(GameObject obj)
     {
         obj.SetActive(true);
     }
 
-   /* This is called when the pool tries to GET() an object
-    * and there is no object avialable in the pool
-    */
+/// <summary>
+/// If we call Pool.Get() and there is no object available
+/// an object is created using this function.
+/// </summary>
+/// <returns>This function returns our created GameObject</returns>
     public GameObject CreatePooledObject()
     {
         var pooledObject = Instantiate<GameObject>(objectToPool);
