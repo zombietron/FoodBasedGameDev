@@ -12,7 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 449d2f86510b2c641ae8aeb33eb95a2f, type: 3}
   m_Name: HotDog_Ammo
   m_EditorClassIdentifier: 
+  foodType: 0
   foodMesh: {fileID: 8959947128519048034, guid: b7681bf94c8997e44ab7bddea3d74f76,
     type: 3}
-  damageValue: 1
+  damageValue: 10
   maxAmmoAmt: 10

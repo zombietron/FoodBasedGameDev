@@ -38,42 +38,40 @@ public class StallBehavior : MonoBehaviour
 		inCooldown = false;
 	}
 
-	//Call on to enable/disable use instructions for table
-	public void DisplayUseInstructions(bool value)
-	{
-		if (!inCooldown)
-		{
-			if (value)
-			{
-				collectionPromptText.SetActive(true);
-			}
-			else
-			{
-				collectionPromptText.SetActive(false);
-			}
-		}
-	}
+    public Ammo GetTableAmmoType()
+    {
+        return tableAmmoType;
+    }
+    //Call on to enable/disable use instructions for table
+    public void DisplayUseInstructions (bool value)
+    {
+        if (!inCooldown)
+        {
+            if (value)
+            {
+                collectionPromptText.SetActive(true);
+            } 
+            else 
+            { 
+                collectionPromptText.SetActive(false);
+            }
+        }
+    }
 
-	#region Testing only, real functionality on player
-	private void OnTriggerEnter(Collider other)
-	{
-		DisplayUseInstructions(true);
-		if (other.tag == "Player")
-		{
-			inventory = other.GetComponent<AmmoInventory>();
-			//This needs to be moved to the player I think. 
-			inCollectionZone = true;
+    #region Testing only, real functionality on player
+    //private void OnTriggerEnter(Collider other)
+    //{
+    //    DisplayUseInstructions(true);
+    //    if (!other.CompareTag("Player")) return;
+    //    inventory = other.GetComponent<AmmoInventory>();
+    //    //This needs to be moved to the player I think. 
+    //    inCollectionZone = true;
+    //}
 
-
-		}
-		if (other.tag != "Player")
-			return;
-	}
-
-	private void OnTriggerExit(Collider other)
-	{
-		DisplayUseInstructions(false);
-	}
+    //private void OnTriggerExit(Collider other)
+    //{
+    //    DisplayUseInstructions(false);
+    //}
 
 	#endregion
 
@@ -111,14 +109,18 @@ public class StallBehavior : MonoBehaviour
 		inCooldown = false;
 	}
 
-	public void StartAmmoPickupCycle()
-	{
-		StartCoroutine(CollectAmmo());
-	}
-
-	public void StopAmmoPickupCycle()
-	{
-		StopCoroutine(CollectAmmo());
-	}
-
+    public void StartAmmoPickupCycle(bool isPressed)
+    {
+        if (isPressed)
+        {
+            Debug.Log("Is Pressed is true");
+            StartCoroutine(CollectAmmo());
+        }
+        else
+        {
+            Debug.Log("Is Pressed is False");
+            StopCoroutine(CollectAmmo());
+        }
+    }
+  
 }
