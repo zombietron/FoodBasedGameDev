@@ -7,6 +7,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: -8841933064720734068, guid: b90be6cb6dabc6948a24d9158ccf32ce,
+        type: 3}
+      propertyPath: m_Layer
+      value: 6
+      objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: b90be6cb6dabc6948a24d9158ccf32ce,
         type: 3}
       propertyPath: m_RootOrder
@@ -25,7 +30,7 @@ PrefabInstance:
     - target: {fileID: -8679921383154817045, guid: b90be6cb6dabc6948a24d9158ccf32ce,
         type: 3}
       propertyPath: m_LocalPosition.z
-      value: 0
+      value: 0.036
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: b90be6cb6dabc6948a24d9158ccf32ce,
         type: 3}
@@ -65,7 +70,17 @@ PrefabInstance:
     - target: {fileID: 919132149155446097, guid: b90be6cb6dabc6948a24d9158ccf32ce,
         type: 3}
       propertyPath: m_Name
-      value: sandwich
+      value: sandwichAmmo
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: b90be6cb6dabc6948a24d9158ccf32ce,
+        type: 3}
+      propertyPath: m_Layer
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 2939202481237943766, guid: b90be6cb6dabc6948a24d9158ccf32ce,
+        type: 3}
+      propertyPath: m_Layer
+      value: 6
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: b90be6cb6dabc6948a24d9158ccf32ce, type: 3}
@@ -105,3 +120,42 @@ MeshCollider:
   m_Convex: 1
   m_CookingOptions: 30
   m_Mesh: {fileID: -8237547066255337473, guid: b90be6cb6dabc6948a24d9158ccf32ce, type: 3}
+--- !u!114 &-6288896396557906892
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5370329103413764276}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fee1c40651df945418dded4d27d8eaac, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  hungerReductionAmount: 50
+--- !u!114 &-3973414707874103076
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5370329103413764276}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: eb67c077b2fd7d6469de68a1fd29bbc8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  objectSpeed: 5
+  direction: 0
+--- !u!114 &6635970112576773249
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5370329103413764276}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 54e230a52e0ec464fb6ff9faba59a217, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 

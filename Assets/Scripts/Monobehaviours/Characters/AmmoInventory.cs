@@ -9,6 +9,7 @@ public class AmmoInventory : MonoBehaviour
     [SerializeField]
     private AmmoContainer ammoContainer;
 
+    [SerializeField] ProjectileAttack atk;
     public Dictionary<string,int> GetAmmoDict()
     {
         return ammoDictionary;
@@ -20,14 +21,15 @@ public class AmmoInventory : MonoBehaviour
         return added;
     }
 
-    private void Start()
+    private void Awake()
     {
         foreach (var item in ammoContainer.ammoList)
         {
-            ammoDictionary.Add(item.GetFoodType().ToString(), 0);
-
+            ammoDictionary.Add(item.GetFoodType().ToString(), item.MaxAmmoAmt());
         }
 
+
+        atk = GetComponent<ProjectileAttack>();
 
     }
 
@@ -49,9 +51,10 @@ public class AmmoInventory : MonoBehaviour
         return ammoType.GetFoodType();
     }
 
-    public void ShootAndRemoveAmmoInventory(Ammo ammoType)
+    public void ShootAndRemoveAmmoInventory(string key)
     {
-        var currentAmmoAmount = ammoDictionary[ammoType.GetFoodType().ToString()];
+        var currentAmmoAmount = ammoDictionary[key];
+        Debug.Log(currentAmmoAmount);
         if (currentAmmoAmount <= 0)
         {
             //Add no remaining ammo sound
@@ -59,8 +62,9 @@ public class AmmoInventory : MonoBehaviour
         }
         //add animation trigger here or player?
         //add shooting sound here?
-        ammoDictionary[ammoType.GetFoodType().ToString()] = currentAmmoAmount - 1;
+        ammoDictionary[key] = currentAmmoAmount - 1;
+        atk.GetProjectile(key);
+        
     }
-    //tryAddAmmo (ammo type, amount)
-    //check dictionary, if valid, add, else do nothing
+
 }

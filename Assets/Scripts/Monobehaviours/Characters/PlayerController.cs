@@ -10,6 +10,7 @@ using Object = UnityEngine.Object;
 namespace Monobehaviours.Characters
 {
     [RequireComponent(typeof(Rigidbody))]
+    [RequireComponent(typeof(ProjectileAttack))]
     public class PlayerController : MonoBehaviour
     {
         [SerializeField] private Rigidbody rb;
@@ -19,8 +20,12 @@ namespace Monobehaviours.Characters
         [SerializeField] private Dictionary<string, int> characterAmmoDict;
         [SerializeField] private StallBehavior stallBehavior; //change to stall type; add identifier to each stall type 
         [SerializeField] private float rotateSpeed;
+        
+        
+
         public bool stopPlayer = false;
         private int currentAmmoCount;
+        private int foodIndex = 0;
         private List<string> allFoodTypes = new List<string>();// not required in player controller anymore?
         private Vector2 move;
         private Vector3 moveForce;
@@ -35,14 +40,18 @@ namespace Monobehaviours.Characters
             characterAmmoDict = characterAmmoInventory.GetAmmoDict();
             foreach (var key in characterAmmoDict.Keys)
             {
-                allFoodTypes.Add(key); 
+                allFoodTypes.Add(key);
+            
             }
+            activeFoodTypeToThrow = allFoodTypes[0];
         }
 
         void OnMove(InputValue value)
         {
             move = value.Get<Vector2>();
             moveForce = new Vector3(-move.x, 0.0f, -move.y);
+            Quaternion toRotation = Quaternion.LookRotation(rb.velocity, Vector3.up);
+            transform.rotation = Quaternion.RotateTowards(transform.rotation, toRotation, rotateSpeed * Time.deltaTime);
         }
 
         public void OnInteract(InputValue value)
@@ -59,7 +68,7 @@ namespace Monobehaviours.Characters
             stallBehavior = other.gameObject.GetComponent<StallBehavior>();
             stallBehavior.DisplayUseInstructions(true);
             stallBehavior.Inventory = characterAmmoInventory;
-            activeFoodTypeToThrow = stallBehavior.GetTableAmmoType().GetFoodType().ToString();
+            //activeFoodTypeToThrow = stallBehavior.GetTableAmmoType().GetFoodType().ToString();
             isInteractable = true;
         }
 
@@ -72,38 +81,30 @@ namespace Monobehaviours.Characters
 
         void OnToggle(InputValue value)
         {
-            //TODO: Add Food projectile toggle code
-            foreach (var foodType in allFoodTypes)
-            {
-                if (foodType == activeFoodTypeToThrow) continue;
-                activeFoodTypeToThrow = foodType;
-                return;
-            }
+            foodIndex = foodIndex >= allFoodTypes.Count-1 ? 0 : foodIndex+1;
+            
+            activeFoodTypeToThrow = allFoodTypes[foodIndex];
 
-            Debug.Log("Active Food Type: " + activeFoodTypeToThrow); // will be easier to test once we have other tables and add other ammos
+            //Debug.Log("Active Food Type: " + activeFoodTypeToThrow); // will be easier to test once we have other tables and add other ammos
         }
 
-        void OnRotate(InputValue value)
-        {
-            Debug.Log("Triggering Rotate");
-            rotateDirection = value.Get<float>();
-        }
+
         void OnThrow()
         {
             //add throw animation here
             isInteractable = false;
-        }
-
-        void OnLook(InputValue value)
-        {
-            //TODO: Aim to shoot maybe?
+            //Debug.Log("Throw");
+            characterAmmoInventory.ShootAndRemoveAmmoInventory(activeFoodTypeToThrow);
         }
 
         private void FixedUpdate()
         {
             rb.velocity = moveForce * moveSpeed; //change to updating transform instead
-            transform.Rotate(Vector3.up * (Time.deltaTime * rotateSpeed * rotateDirection));
-            #region ammo transform follows player transform
+            if (rb.velocity != Vector3.zero)
+            {
+                transform.rotation = Quaternion.LookRotation(rb.velocity, Vector3.up);
+            }
+                #region ammo transform follows player transform
             //if (isInteractable)
             //{
             //    foreach (var pizza in pizzasToThrow)

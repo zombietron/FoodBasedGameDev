@@ -8,7 +8,7 @@ public class PooledObject : MonoBehaviour
 {
 
     //This is our ObjectPool Object pulled from UnityEngine.Pool
-    IObjectPool<GameObject> objectPool;
+    public IObjectPool<GameObject> objectPool { get; private set; }
 
     //this is the object that we will pool.
 
@@ -25,6 +25,7 @@ public class PooledObject : MonoBehaviour
     void OnEnable()
     {
         if (objectPool != null) return;
+
         objectPool = new ObjectPool<GameObject>(CreatePooledObject, OnTakeFromPool, 
             OnReturnedToPool, OnDestroyPoolObject, true, 10, maxObjectPoolSize);
         initialObjects = new List<GameObject>();
@@ -96,6 +97,11 @@ public class PooledObject : MonoBehaviour
     {
         var pooledObject = Instantiate<GameObject>(objectToPool);
         pooledObject.transform.parent = transform;
+        var poolBehaviour = pooledObject.GetComponent<PooledObjectBehaviour>();
+
+        if(poolBehaviour!=null)
+            poolBehaviour.SetObjectPool(this);
+
         initialObjects.Add(pooledObject);
         return pooledObject;
 

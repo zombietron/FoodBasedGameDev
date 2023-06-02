@@ -13,7 +13,7 @@ public class SpawnController : MonoBehaviour
         get { return spawnGap; }
     }
 
-    [SerializeField] List<GameObject> enemyPrefabs;
+   public List<PooledObject> enemyPools;
 
     [SerializeField] List<Transform> spawnPoints;
     [SerializeField] WaveManager waveMgr;
@@ -22,6 +22,7 @@ public class SpawnController : MonoBehaviour
     {
         get { return enemiesInScene; }
     }
+
 
     bool waveComplete = false;
     GameObject spawnedEnemies;
@@ -37,8 +38,6 @@ public class SpawnController : MonoBehaviour
     // Start is called before the first frame update
     private void Awake()
     {
-        spawnedEnemies = new GameObject();
-        spawnedEnemies.name = "Spawned Enemies";
         enemiesInScene = new List<Transform>();
     }
 
@@ -57,21 +56,25 @@ public class SpawnController : MonoBehaviour
         while (GameManager.Instance.gameState == GameManager.GameState.gameRunning)
         {
 
-            yield return new WaitForSeconds(gap);
-
             if (enemiesInScene.Count < waveMgr.wave.maxEnemiesSpawnedDuringWave && !waveMgr.wave.waveComplete)
             {
-                var spawnedEnemy = Instantiate<GameObject>(SelectEnemyType(), spawnedEnemies.transform);
+                PooledObject enemy = SelectEnemyType();
+
+                var spawnedEnemy = enemy.objectPool.Get();
+                spawnedEnemy.GetComponent<PooledObjectBehaviour>().SetSpawnController(this);
                 enemiesInScene.Add(spawnedEnemy.transform);
                 waveMgr.wave.AddEnemyToWaveCount();
+
                 //This is a solution for the spawned enemy not hitting the correct point due to a navmesh conflict
                 // we need to clean this up and make it an event based system.
                 spawnedEnemy.GetComponent<NavMeshAgent>().enabled = false;
                 spawnedEnemy.transform.position = spawnPoints[spawnLocationIndex].position;
+                
                 //same here
                 spawnedEnemy.GetComponent<NavMeshAgent>().enabled = true;
 
                 spawnLocationIndex = spawnLocationIndex >= spawnPoints.Count - 1 ? 0 : spawnLocationIndex + 1;
+                
                 //spawnedEnemy.transform.parent = spawnedEnemies.transform;
                 yield return new WaitForSeconds(gap);
             }
@@ -85,9 +88,9 @@ public class SpawnController : MonoBehaviour
 
     }
 
-    public GameObject SelectEnemyType()
+    public PooledObject SelectEnemyType()
     {
-        GameObject selectedEnemyType = null;
+        PooledObject selectedEnemyType = null;
         int randomNumber = Random.Range(0, 100);
 
         switch(randomNumber)
@@ -99,21 +102,21 @@ public class SpawnController : MonoBehaviour
             
             
             case int n when n >= 1 && n <= 5:
-                selectedEnemyType = enemyPrefabs[2]; //skele
+                selectedEnemyType = enemyPools[2]; //skele
             break;
             
               
             case int n when n > 5 && n <= 14:
-                selectedEnemyType = enemyPrefabs[1]; //vamp
+                selectedEnemyType = enemyPools[1]; //vamp
                 break;
             
             //If the number is 0 to 80 
             case int n when n > 14:
-                selectedEnemyType = enemyPrefabs[0]; //zombo
+                selectedEnemyType = enemyPools[0]; //zombo
                 break;
 
             default:
-                selectedEnemyType = enemyPrefabs[0]; //zombo
+                selectedEnemyType = enemyPools[0]; //zombo
                 break;
 
         }
@@ -131,7 +134,7 @@ public class SpawnController : MonoBehaviour
         StopCoroutine(SpawnMonstersWithGap(spawnGap));
     }
 
-    public void RemoveDestroyedEnemy( Transform enemyTrans)
+    public void RemoveDestroyedEnemy(Transform enemyTrans)
     {
         enemiesInScene.Remove(enemyTrans);
         if(enemiesInScene.Count == 0)

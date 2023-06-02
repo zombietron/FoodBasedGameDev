@@ -29,8 +29,8 @@
                     "id": "7ece003d-c71e-4fd2-898e-e962521716a0",
                     "expectedControlType": "Button",
                     "processors": "",
-                    "interactions": "",
-                    "initialStateCheck": false
+                    "interactions": "Press",
+                    "initialStateCheck": true
                 },
                 {
                     "name": "Toggle",
@@ -273,7 +273,7 @@
                 {
                     "name": "",
                     "id": "96e62395-db76-44f1-85ce-81e84a536cc4",
-                    "path": "<Keyboard>/x",
+                    "path": "<Keyboard>/space",
                     "interactions": "",
                     "processors": "",
                     "groups": "Keyboard&Mouse",

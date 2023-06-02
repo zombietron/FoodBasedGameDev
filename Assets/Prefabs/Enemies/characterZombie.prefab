@@ -99,9 +99,10 @@ GameObject:
   - component: {fileID: 208340692966921844}
   - component: {fileID: 8822650602770933460}
   - component: {fileID: 239679891808685671}
+  - component: {fileID: 3247820407774906187}
   m_Layer: 0
   m_Name: characterZombie
-  m_TagString: Untagged
+  m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -176,6 +177,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   totalHP: 20
   currentHP: 0
+  isEnemy: 1
 --- !u!114 &208340692966921844
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -240,6 +242,18 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+--- !u!114 &3247820407774906187
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3544347011249753324}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 54e230a52e0ec464fb6ff9faba59a217, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &6312907684571825426
 GameObject:
   m_ObjectHideFlags: 0

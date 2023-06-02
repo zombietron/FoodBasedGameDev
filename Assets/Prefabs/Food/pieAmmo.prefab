@@ -67,6 +67,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: pieAmmo
       objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 9c71a6aabef46c8419ee5a2cdc45aa84,
+        type: 3}
+      propertyPath: m_Layer
+      value: 6
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 9c71a6aabef46c8419ee5a2cdc45aa84, type: 3}
 --- !u!1 &1466558162866578227 stripped
@@ -104,7 +109,7 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 0.7127999, y: 0.112266, z: 0.7127999}
   m_Center: {x: 0, y: 0.056133, z: 0}
---- !u!114 &-5066716879860412686
+--- !u!114 &-4076942402263281006
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -113,6 +118,33 @@ MonoBehaviour:
   m_GameObject: {fileID: 1466558162866578227}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 45a1d1f00c3d16b4596ec0a5a47ff678, type: 3}
+  m_Script: {fileID: 11500000, guid: 54e230a52e0ec464fb6ff9faba59a217, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &-577815049945002941
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1466558162866578227}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fee1c40651df945418dded4d27d8eaac, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  hungerReductionAmount: 50
+--- !u!114 &7504034471402181523
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1466558162866578227}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: eb67c077b2fd7d6469de68a1fd29bbc8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  objectSpeed: 5
+  direction: 0

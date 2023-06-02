@@ -65,7 +65,12 @@ PrefabInstance:
     - target: {fileID: 919132149155446097, guid: a8f4b6c702115544d82f1f80777cdb28,
         type: 3}
       propertyPath: m_Name
-      value: taco
+      value: tacoAmmo
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: a8f4b6c702115544d82f1f80777cdb28,
+        type: 3}
+      propertyPath: m_Layer
+      value: 6
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: a8f4b6c702115544d82f1f80777cdb28, type: 3}
@@ -75,19 +80,6 @@ GameObject:
     type: 3}
   m_PrefabInstance: {fileID: 1168885119345437766}
   m_PrefabAsset: {fileID: 0}
---- !u!135 &3537342275984724640
-SphereCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2087945107681448215}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 1
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Radius: 0.22
-  m_Center: {x: 0, y: 0.13108169, z: 0}
 --- !u!54 &2616912943623212453
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -104,3 +96,55 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
+--- !u!135 &3537342275984724640
+SphereCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2087945107681448215}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Radius: 0.22
+  m_Center: {x: 0, y: 0.13108169, z: 0}
+--- !u!114 &-7664715938075093768
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2087945107681448215}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 54e230a52e0ec464fb6ff9faba59a217, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &-6721675128959813391
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2087945107681448215}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fee1c40651df945418dded4d27d8eaac, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  hungerReductionAmount: 50
+--- !u!114 &7111861328428219336
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2087945107681448215}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: eb67c077b2fd7d6469de68a1fd29bbc8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  objectSpeed: 5
+  direction: 0

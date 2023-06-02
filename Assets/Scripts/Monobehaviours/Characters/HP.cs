@@ -10,6 +10,7 @@ public class HP : MonoBehaviour
     [SerializeField]
     private int currentHP;
 
+    public bool isEnemy;
     
     void OnEnable()
     {
@@ -28,6 +29,10 @@ public class HP : MonoBehaviour
 
     private void Dead()
     {
+        if(isEnemy)
+        {
+            gameObject.GetComponent<PooledObjectBehaviour>().ReturnToPool();
+        }
         //Determine what happens after we die. #NoBiggie
     }
 

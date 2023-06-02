@@ -21,6 +21,8 @@ public class WaveManager : MonoBehaviour
 
     public static ChangeWaveState changeWaveState;
 
+    [SerializeField] TimerUI timer;
+
     private void Start()
     {
         changeWaveState += UpdateWaveState;
@@ -40,11 +42,12 @@ public class WaveManager : MonoBehaviour
                 }
                 else
                     wave.ProgressWave();
-
-                changeWaveState.Invoke(WaveState.running);
+                timer.gameObject.SetActive(true);
+                timer.StartTimer();
                 break;
 
             case WaveState.running:
+                timer.gameObject.SetActive(false);
                 spawnController.StartMonsterWithGapCoRoutine(spawnController.SpawnGap);
                 break;
 

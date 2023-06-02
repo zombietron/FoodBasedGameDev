@@ -1,4 +1,3 @@
-repository "FoodBasedGameDev@UnityEducation@cloud"
+rep "FoodBasedGameDev@UnityEducation@cloud"
   path "/"
-    smartbranch "/main" changeset "50"                 
-     
+    smartbranch "/main"

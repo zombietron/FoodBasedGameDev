@@ -439,9 +439,10 @@ GameObject:
   - component: {fileID: 2907226185213567144}
   - component: {fileID: 9196167994077320937}
   - component: {fileID: 5231334095532319689}
+  - component: {fileID: 7742686214090244496}
   m_Layer: 0
   m_Name: characterVampire
-  m_TagString: Untagged
+  m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -554,6 +555,19 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   totalHP: 40
   currentHP: 0
+  isEnemy: 1
+--- !u!114 &7742686214090244496
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6618731569692097792}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 54e230a52e0ec464fb6ff9faba59a217, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &7014994035598219327
 GameObject:
   m_ObjectHideFlags: 0

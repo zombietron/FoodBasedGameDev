@@ -7,4 +7,5 @@ using UnityEngine;
 public class AmmoContainer : ScriptableObject
 {
     public List<Ammo> ammoList;
+
 }

@@ -34,6 +34,7 @@ public class Wave : MonoBehaviour
         enemyCount += 5;
         waveNum++;
         maxEnemiesSpawnedDuringWave += 4;
+        enemiesSpawnedDuringWave = 0;
         waveComplete = false;
         if(waveNum%3 == 0)
         {

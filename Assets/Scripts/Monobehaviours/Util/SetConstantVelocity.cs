@@ -22,14 +22,13 @@ public class SetConstantVelocity : MonoBehaviour
     }
 
     // Start is called before the first frame update
-    void Start()
+    void OnEnable()
     {
         rb = GetComponent<Rigidbody>();
-        InitializeVelocity();
         
     }
 
-    void InitializeVelocity()
+    public void InitializeVelocity()
     {
         switch(direction)
         {
@@ -49,5 +48,10 @@ public class SetConstantVelocity : MonoBehaviour
                 break;
 
         }
+    }
+
+    public void SetObjectVelocity(Vector3 forward)
+    {
+        rb.velocity = objectSpeed * forward;
     }
 }
