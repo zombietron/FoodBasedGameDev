@@ -22,6 +22,11 @@ public class PooledObject : MonoBehaviour
     //sorry list.
     List<GameObject> initialObjects;
 
+    //this is the toggle to delineate if we need to know the pizza explosion pool as well. 
+    public bool pizzaPool;
+
+    [SerializeField] PooledObject pizzaBombPool;
+
     void OnEnable()
     {
         if (objectPool != null) return;
@@ -99,8 +104,15 @@ public class PooledObject : MonoBehaviour
         pooledObject.transform.parent = transform;
         var poolBehaviour = pooledObject.GetComponent<PooledObjectBehaviour>();
 
-        if(poolBehaviour!=null)
+        if (poolBehaviour != null)
+        {
             poolBehaviour.SetObjectPool(this);
+
+            if(pizzaPool && pizzaBombPool!=null)
+            {
+                poolBehaviour.SetPizzaBombPool(pizzaBombPool);
+            }
+        }
 
         initialObjects.Add(pooledObject);
         return pooledObject;

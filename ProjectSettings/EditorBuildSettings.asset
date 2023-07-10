@@ -8,6 +8,11 @@ EditorBuildSettings:
   - enabled: 0
     path: 
     guid: 00000000000000000000000000000000
+  - enabled: 1
+    path: Assets/Scenes/Main.unity
+    guid: 3186506959fe9dd4295cd4d5e4d3c53e
   m_configObjects:
     com.unity.input.settings: {fileID: 11400000, guid: cc79bc7187de545879528cb5a41dc1a4,
+      type: 2}
+    com.unity.xr.arfoundation.simulation_settings: {fileID: 11400000, guid: 8193f77c8282c40d7a6b971d6bcad919,
       type: 2}

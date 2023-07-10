@@ -23,7 +23,7 @@ public class WaveManager : MonoBehaviour
 
     [SerializeField] TimerUI timer;
 
-    private void Start()
+    private void Awake()
     {
         changeWaveState += UpdateWaveState;
     }

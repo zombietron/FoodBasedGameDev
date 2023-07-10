@@ -16,8 +16,7 @@ public class Wave : MonoBehaviour
     public bool waveComplete { private set; get; }
 
 
-    [SerializeField] SpawnController spawnController;
- 
+
     
 
     public void InitFirstWave()
@@ -50,6 +49,11 @@ public class Wave : MonoBehaviour
             waveComplete = true;
             Debug.Log($"Wave {waveNum} is complete");
         }
+    }
+
+    public string GetWaveCount()
+    {
+        return waveNum.ToString();
     }
 
     public void ResetWaveCount()

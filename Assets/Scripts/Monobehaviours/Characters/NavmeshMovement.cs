@@ -5,6 +5,7 @@ using UnityEngine.AI;
 using UnityEngine.Events;
 
 [RequireComponent(typeof(NavMeshAgent))]
+[RequireComponent(typeof(MeleAttack))]
 public class NavmeshMovement : MonoBehaviour
 {
     private NavMeshAgent agent;
@@ -12,6 +13,7 @@ public class NavmeshMovement : MonoBehaviour
     [SerializeField]
     private float agentSpeed;
 
+    MeleAttack atk;
     
     [SerializeField] 
     private GameObject selectedTarget;
@@ -21,12 +23,14 @@ public class NavmeshMovement : MonoBehaviour
     void Awake()
     {
         agent = GetComponent<NavMeshAgent>();
-        agent.speed = agentSpeed; 
+        agent.speed = agentSpeed;
+        atk = GetComponent<MeleAttack>();
     }
 
-    private void Start()
+    private void OnEnable()
     {
-        selectedTarget = SelectTargetPlayer(); 
+        selectedTarget = SelectTargetPlayer();
+        atk.Target = selectedTarget;
     }
 
     private GameObject SelectTargetPlayer()
@@ -72,10 +76,11 @@ BB&&G7?7!7!7JJ5PBBGBBGGGGGGGGGB#@@@@@@@@@&&&&@&@@&
     void Update()
     {
         agent.SetDestination(selectedTarget.transform.position);
-
+        
         if(agent.destination != null) {
-            if (agent.remainingDistance <= 0.1f)
+            if (Vector3.Distance(agent.gameObject.transform.position,agent.destination) <=1f)
             {
+                Debug.Log(Vector3.Distance(agent.gameObject.transform.position, agent.destination));
                 inAttackRange.Invoke(true);
             }
         } 

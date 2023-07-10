@@ -6,6 +6,7 @@ using UnityEngine.AI;
 public class SpawnController : MonoBehaviour
 {
     [SerializeField] int spawnGap = 3;
+    private int score = 0;
 
     public int SpawnGap
     {
@@ -24,7 +25,7 @@ public class SpawnController : MonoBehaviour
     }
 
 
-    bool waveComplete = false;
+    //bool waveComplete = false;
     GameObject spawnedEnemies;
     int spawnLocationIndex = 0;
 
@@ -35,7 +36,7 @@ public class SpawnController : MonoBehaviour
      * the wave manager when its time to spawn a wave which then
      * tells the SpawnController how many and where
     */
-    // Start is called before the first frame update
+
     private void Awake()
     {
         enemiesInScene = new List<Transform>();
@@ -137,9 +138,15 @@ public class SpawnController : MonoBehaviour
     public void RemoveDestroyedEnemy(Transform enemyTrans)
     {
         enemiesInScene.Remove(enemyTrans);
+        score++;
         if(enemiesInScene.Count == 0)
         {
             WaveManager.changeWaveState(WaveManager.WaveState.preWave);
         }
+    }
+
+    public string GetScore()
+    {
+        return score.ToString();
     }
 }

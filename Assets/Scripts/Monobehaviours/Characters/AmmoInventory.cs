@@ -67,4 +67,9 @@ public class AmmoInventory : MonoBehaviour
         
     }
 
+    public string GetCurrentAmmoCount(string key)
+    {
+        return ammoDictionary[key].ToString();
+    }
+
 }

@@ -20,7 +20,9 @@ namespace Monobehaviours.Characters
         [SerializeField] private Dictionary<string, int> characterAmmoDict;
         [SerializeField] private StallBehavior stallBehavior; //change to stall type; add identifier to each stall type 
         [SerializeField] private float rotateSpeed;
-        
+
+        [SerializeField] Animator anim;
+        public bool isDead = false;
         
 
         public bool stopPlayer = false;
@@ -32,6 +34,7 @@ namespace Monobehaviours.Characters
         private string activeFoodTypeToThrow;
         private float rotateDirection;
         private bool isInteractable;
+        private bool moving = false;
 
         void Start()
         {
@@ -44,6 +47,8 @@ namespace Monobehaviours.Characters
             
             }
             activeFoodTypeToThrow = allFoodTypes[0];
+
+            Debug.Log("Starting Velocity is: " + rb.velocity);
         }
 
         void OnMove(InputValue value)
@@ -52,6 +57,9 @@ namespace Monobehaviours.Characters
             moveForce = new Vector3(-move.x, 0.0f, -move.y);
             Quaternion toRotation = Quaternion.LookRotation(rb.velocity, Vector3.up);
             transform.rotation = Quaternion.RotateTowards(transform.rotation, toRotation, rotateSpeed * Time.deltaTime);
+            moving = !moving;
+
+            anim.SetBool("isRunning",moving);
         }
 
         public void OnInteract(InputValue value)
@@ -70,6 +78,7 @@ namespace Monobehaviours.Characters
             stallBehavior.Inventory = characterAmmoInventory;
             //activeFoodTypeToThrow = stallBehavior.GetTableAmmoType().GetFoodType().ToString();
             isInteractable = true;
+            stallBehavior.Player = this;
         }
 
         private void OnTriggerExit(Collider other)
@@ -88,6 +97,10 @@ namespace Monobehaviours.Characters
             //Debug.Log("Active Food Type: " + activeFoodTypeToThrow); // will be easier to test once we have other tables and add other ammos
         }
 
+        public string GetActiveFoodTypeToThrow()
+        {
+            return activeFoodTypeToThrow;
+        }
 
         void OnThrow()
         {
@@ -99,12 +112,23 @@ namespace Monobehaviours.Characters
 
         private void FixedUpdate()
         {
+            if(isDead)
+            {
+                anim.SetTrigger("isDead");
+            }
+
             rb.velocity = moveForce * moveSpeed; //change to updating transform instead
             if (rb.velocity != Vector3.zero)
             {
                 transform.rotation = Quaternion.LookRotation(rb.velocity, Vector3.up);
             }
-                #region ammo transform follows player transform
+
+            if(move==Vector2.zero)
+            {
+                rb.angularVelocity = Vector3.zero;
+            }
+
+            #region ammo transform follows player transform
             //if (isInteractable)
             //{
             //    foreach (var pizza in pizzasToThrow)
@@ -114,9 +138,15 @@ namespace Monobehaviours.Characters
             //}
             #endregion
 
-            if (!stopPlayer) return;
-            rb.velocity = Vector3.zero;
-            rb.angularVelocity = Vector3.zero;
+            //if (!stopPlayer) return;
+            
+
+        }
+
+        public void SetAmmoIndex(int i)
+        {
+            foodIndex = i;
+            activeFoodTypeToThrow = allFoodTypes[foodIndex];
 
         }
     }

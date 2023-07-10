@@ -5,6 +5,7 @@ using UnityEngine;
 public class PooledObjectBehaviour : MonoBehaviour
 {
     PooledObject myObjectPool;
+    PooledObject pizzaBombPool;
 
     SpawnController spawnCtrl;
     public void SetObjectPool(PooledObject pool)
@@ -27,7 +28,15 @@ public class PooledObjectBehaviour : MonoBehaviour
         myObjectPool.objectPool.Release(gameObject);
     }
 
+    public void SetPizzaBombPool(PooledObject pool)
+    {
+        pizzaBombPool = pool;
+    }
 
+    public PooledObject GetPizzaBombPool()
+    {
+        return pizzaBombPool;
+    }
 
 
 }

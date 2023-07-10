@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.UI;
+using Monobehaviours.Characters;
 
 public class StallBehavior : MonoBehaviour
     //stall behavior
@@ -22,7 +23,15 @@ public class StallBehavior : MonoBehaviour
     private float collectionTimerSecs;
 
     [SerializeField] private AmmoInventory inventory;
-    
+
+    [SerializeField] PlayerController player;
+
+    public PlayerController Player
+    {
+        get { return player; }
+        set { player = value; }
+    }
+    [SerializeField] int ammoIndex;
 
     public AmmoInventory Inventory
     {
@@ -93,6 +102,7 @@ public class StallBehavior : MonoBehaviour
         Debug.Log("Ammo Collected!");
         fillRing.color = Color.green;
         inventory.UpdateAmmoInventory(tableAmmoType, tableAmmoType.MaxAmmoAmt());
+        player.SetAmmoIndex(ammoIndex);
         StartCoroutine(CoolDown());
     }
 

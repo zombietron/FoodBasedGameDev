@@ -5,11 +5,8 @@ using UnityEngine;
 [RequireComponent(typeof(Rigidbody))]
 public class SetConstantVelocity : MonoBehaviour
 {
-    //This is a big old pointless comment
-    /**
-     * COMMMENTS!
-     */
-    Rigidbody rb;
+
+    [SerializeField] Rigidbody rb;
     [SerializeField] float objectSpeed;
     [SerializeField] movementDirection direction;
 

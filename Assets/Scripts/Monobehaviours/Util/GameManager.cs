@@ -30,7 +30,7 @@ public class GameManager : MonoBehaviour
     {
         if (Instance != null)
         {
-            Destroy(this);
+            Destroy(gameObject);
         }
         else
             Instance = this;
@@ -74,10 +74,14 @@ public class GameManager : MonoBehaviour
 
     public void EndGame()
     {
-        //end the game
+        StartCoroutine("RestartGame");
         Debug.Log("I'm the end of the game");
     }
 
+    public void RestartGame()
+    {
+        SceneManager.LoadScene(0);
+    }
     public void PauseGame()
     {
         Debug.Log("Paused");
@@ -86,7 +90,8 @@ public class GameManager : MonoBehaviour
     public void OnSceneLoad(Scene scene, LoadSceneMode mode)
     {
         Debug.Log($"{SceneManager.GetActiveScene()} has loaded");
-
+        waveMgr = FindObjectOfType<WaveManager>();
+        waveMgr.wave.ResetWaveCount();
         if(scene.name == "Main")
         {
             ChangeGameState(GameState.gameRunning);

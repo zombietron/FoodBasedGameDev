@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: PizzaSlice_Ammo
   m_EditorClassIdentifier: 
   foodType: 5
-  foodMesh: {fileID: 1154712438862004672, guid: ae70d198ee7114f489b6ccab3d59b2bb,
+  foodMesh: {fileID: 8771419009265247666, guid: a81c57005470b614188f9fbd48379d7c,
     type: 3}
   damageValue: 3
-  maxAmmoAmt: 1
+  maxAmmoAmt: 3
