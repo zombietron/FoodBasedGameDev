@@ -108,6 +108,7 @@ namespace Monobehaviours.Characters
             isInteractable = false;
             //Debug.Log("Throw");
             characterAmmoInventory.ShootAndRemoveAmmoInventory(activeFoodTypeToThrow);
+            anim.SetTrigger("isThrowing");
         }
 
         private void FixedUpdate()

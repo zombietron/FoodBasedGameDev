@@ -117,7 +117,7 @@ ModelImporter:
       scale: {x: 1, y: 1, z: 1}
     - name: HeroMesh
       parentName: HeroModel(Clone)
-      position: {x: -0, y: -0.000016444503, z: -0.00006687397}
+      position: {x: -0, y: -0.0016444502, z: -0.0066873967}
       rotation: {x: 0, y: -0, z: -0, w: 1}
       scale: {x: 1, y: 1, z: 1}
     - name: ROOT
@@ -127,162 +127,162 @@ ModelImporter:
       scale: {x: 1, y: 1, z: 1}
     - name: Hips
       parentName: ROOT
-      position: {x: -0, y: 0.0032072512, z: -0.000035197496}
+      position: {x: -0, y: 0.3207251, z: -0.00351975}
       rotation: {x: 0, y: 0, z: -0.7071068, w: 0.7071068}
       scale: {x: 1, y: 1, z: 1}
     - name: Spine1
       parentName: Hips
-      position: {x: -0.0007062523, y: 0, z: 0}
+      position: {x: -0.07062523, y: 0, z: 0}
       rotation: {x: 0, y: -0, z: -0, w: 1}
       scale: {x: 1, y: 1, z: 1}
     - name: Spine2
       parentName: Spine1
-      position: {x: -0.0014379976, y: 0, z: 0}
+      position: {x: -0.14379977, y: 0, z: 0}
       rotation: {x: 6.939354e-18, y: -0.026176948, z: 7.3256e-20, w: 0.99965733}
       scale: {x: 1, y: 1, z: 1}
     - name: Neck
       parentName: Spine2
-      position: {x: -0.0018247882, y: 0, z: 0}
+      position: {x: -0.18247885, y: 0, z: 0}
       rotation: {x: 0, y: 0.026176948, z: -0, w: 0.99965733}
       scale: {x: 1, y: 1, z: 1}
     - name: Head
       parentName: Neck
-      position: {x: -0.0010156882, y: 0, z: 0}
+      position: {x: -0.10156882, y: 0, z: 0}
       rotation: {x: 0, y: -0, z: -0, w: 1}
       scale: {x: 1, y: 1, z: 1}
     - name: HeadEND
       parentName: Head
-      position: {x: -0.0050057108, y: 0, z: 0}
+      position: {x: -0.50057113, y: 0, z: 0}
       rotation: {x: 0, y: -0, z: -0, w: 1}
       scale: {x: 1, y: 1, z: 1}
     - name: LeftShoulder
       parentName: Spine2
-      position: {x: -0.0013202627, y: -0.0006052066, z: -0.000032089025}
+      position: {x: -0.13202627, y: -0.06052066, z: -0.003208903}
       rotation: {x: 0.018509898, y: 0.018509898, z: 0.7068645, w: 0.7068645}
       scale: {x: 1, y: 1, z: 1}
     - name: LeftUpperArm
       parentName: LeftShoulder
-      position: {x: -0.00065873546, y: 0, z: 0}
+      position: {x: -0.06587355, y: 0, z: 0}
       rotation: {x: 0, y: -0, z: -0, w: 1}
       scale: {x: 1, y: 1, z: 1}
     - name: LeftArm
       parentName: LeftUpperArm
-      position: {x: -0.00231709, y: 0, z: 0}
+      position: {x: -0.23170903, y: 0, z: 0}
       rotation: {x: 0, y: -0, z: -0, w: 1}
       scale: {x: 1, y: 1, z: 1}
     - name: LeftArmEND
       parentName: LeftArm
-      position: {x: -0.0022572053, y: 0, z: 0}
+      position: {x: -0.22572052, y: 0, z: 0}
       rotation: {x: 0, y: -0, z: -0, w: 1}
       scale: {x: 1, y: 1, z: 1}
     - name: RightShoulder
       parentName: Spine2
-      position: {x: -0.0013202677, y: 0.0006052065, z: -0.00003208881}
+      position: {x: -0.13202676, y: 0.06052065, z: -0.0032088808}
       rotation: {x: 0.7068645, y: 0.7068645, z: -0.018509898, w: -0.018509898}
       scale: {x: 1, y: 1, z: 1}
     - name: RightUpperArm
       parentName: RightShoulder
-      position: {x: 0.0006587355, y: 0, z: 1.6653345e-20}
+      position: {x: 0.06587355, y: 0, z: 1.6653346e-18}
       rotation: {x: 2.220446e-16, y: -0, z: -0, w: 1}
       scale: {x: 1, y: 1, z: 1}
     - name: RightArm
       parentName: RightUpperArm
-      position: {x: 0.002317083, y: -1.065814e-18, z: 0}
+      position: {x: 0.2317083, y: -1.06581415e-16, z: 0}
       rotation: {x: 2.220446e-16, y: -0, z: -0, w: 1}
       scale: {x: 1, y: 1, z: 1}
     - name: RightArmEND
       parentName: RightArm
-      position: {x: 0.0022572149, y: 1.065814e-18, z: 4.9960035e-20}
+      position: {x: 0.22572151, y: 1.06581415e-16, z: 4.9960034e-18}
       rotation: {x: 0, y: -0, z: -0, w: 1}
       scale: {x: 1, y: 1, z: 1}
     - name: LeftLeg
       parentName: Hips
-      position: {x: 0.00043593434, y: -0.0011950936, z: 0}
+      position: {x: 0.043593436, y: -0.11950938, z: 0}
       rotation: {x: -0.00000020834999, y: -1.2246462e-16, z: 1, w: -1.5604354e-14}
       scale: {x: 1, y: 1, z: 1}
     - name: LeftCalf
       parentName: LeftLeg
-      position: {x: -0.0012563012, y: -1.3322676e-19, z: 0}
+      position: {x: -0.12563013, y: -1.3322677e-17, z: 0}
       rotation: {x: 1.3853185e-16, y: -0.00000038278952, z: -1.2865243e-14, w: 1}
       scale: {x: 1, y: 1, z: 1}
     - name: LeftCalfEND
       parentName: LeftCalf
-      position: {x: -0.001510588, y: 2.664535e-19, z: 0}
+      position: {x: -0.1510588, y: 2.6645354e-17, z: 0}
       rotation: {x: 0, y: -0, z: -0, w: 1}
       scale: {x: 1, y: 1, z: 1}
     - name: RightLeg
       parentName: Hips
-      position: {x: 0.0004359412, y: 0.0011950934, z: -2.7888985e-12}
+      position: {x: 0.04359412, y: 0.11950934, z: -2.7888986e-10}
       rotation: {x: 1, y: -1.2045252e-16, z: 0.00000020941302, w: -2.832769e-16}
       scale: {x: 1, y: 1, z: 1}
     - name: RightCalf
       parentName: RightLeg
-      position: {x: 0.001256295, y: 0, z: 0}
+      position: {x: 0.1256295, y: 0, z: 0}
       rotation: {x: 0, y: -0.00000038279092, z: -0, w: 1}
       scale: {x: 1, y: 1, z: 1}
     - name: RightCalfEND
       parentName: RightCalf
-      position: {x: 0.0015105873, y: 0, z: 0}
+      position: {x: 0.15105873, y: 0, z: 0}
       rotation: {x: 0, y: -0, z: -0, w: 1}
       scale: {x: 1, y: 1, z: 1}
     - name: Controller
       parentName: HeroModel(Clone)
-      position: {x: 0.0000051002044, y: 0, z: 0}
+      position: {x: 0.0005100204, y: 0, z: 0}
       rotation: {x: 0, y: -0, z: -0, w: 1}
       scale: {x: 1, y: 1, z: 1}
     - name: Controller1
       parentName: Controller
-      position: {x: -0, y: 0.0030384045, z: 0}
+      position: {x: -0, y: 0.30384046, z: 0}
       rotation: {x: 0, y: -0, z: -0, w: 1}
       scale: {x: 1, y: 1, z: 1}
     - name: nurbsCircle4
       parentName: Controller1
-      position: {x: -0.0000051002044, y: 0.0008750987, z: -0.000035197496}
+      position: {x: -0.0005100204, y: 0.08750987, z: -0.00351975}
       rotation: {x: 0, y: -0, z: -0, w: 1}
       scale: {x: 1, y: 1, z: 1}
     - name: nurbsCircle5
       parentName: nurbsCircle4
-      position: {x: -0, y: 0.0014379976, z: 0}
+      position: {x: -0, y: 0.14379977, z: 0}
       rotation: {x: 0, y: -0, z: -0, w: 1}
       scale: {x: 1, y: 1, z: 1}
     - name: nurbsCircle6
       parentName: nurbsCircle5
-      position: {x: -0, y: 0.0028379755, z: -0.00009550204}
+      position: {x: -0, y: 0.28379756, z: -0.009550204}
       rotation: {x: 0, y: -0, z: -0, w: 1}
       scale: {x: 1, y: 1, z: 1}
     - name: nurbsCircle7
       parentName: nurbsCircle5
-      position: {x: -0.0006052066, y: 0.0013167743, z: -0.00010114227}
+      position: {x: -0.06052066, y: 0.13167743, z: -0.010114227}
       rotation: {x: 0, y: -0, z: -0, w: 1}
       scale: {x: 1, y: 1, z: 1}
     - name: nurbsCircle10
       parentName: nurbsCircle5
-      position: {x: 0.0006052065, y: 0.0013167788, z: -0.00010114229}
+      position: {x: 0.06052065, y: 0.1316779, z: -0.010114228}
       rotation: {x: 0, y: -0, z: -0, w: 1}
       scale: {x: 1, y: 1, z: 1}
     - name: nurbsCircle8
       parentName: nurbsCircle5
-      position: {x: -0.0012639419, y: 0.0013167743, z: -0.00010114227}
+      position: {x: -0.1263942, y: 0.13167743, z: -0.010114227}
       rotation: {x: 0, y: -0, z: -0, w: 1}
       scale: {x: 1, y: 1, z: 1}
     - name: nurbsCircle9
       parentName: nurbsCircle8
-      position: {x: -0.00231709, y: 0, z: 0}
+      position: {x: -0.23170903, y: 0, z: 0}
       rotation: {x: 0, y: -0, z: -0, w: 1}
       scale: {x: 1, y: 1, z: 1}
     - name: nurbsCircle11
       parentName: nurbsCircle5
-      position: {x: 0.0012639419, y: 0.0013167788, z: -0.00010114229}
+      position: {x: 0.1263942, y: 0.1316779, z: -0.010114228}
       rotation: {x: 0, y: -0, z: -0, w: 1}
       scale: {x: 1, y: 1, z: 1}
     - name: nurbsCircle12
       parentName: nurbsCircle11
-      position: {x: 0.002317083, y: 0, z: 0}
+      position: {x: 0.2317083, y: 0, z: 0}
       rotation: {x: 0, y: -0, z: -0, w: 1}
       scale: {x: 1, y: 1, z: 1}
     - name: nurbsCircle3
       parentName: Controller1
-      position: {x: -0.0000051002044, y: 0.00016884659, z: -0.000035197496}
+      position: {x: -0.0005100204, y: 0.01688466, z: -0.00351975}
       rotation: {x: 0, y: -0, z: -0, w: 1}
       scale: {x: 1, y: 1, z: 1}
     armTwist: 0.5
@@ -292,7 +292,7 @@ ModelImporter:
     armStretch: 0.05
     legStretch: 0.05
     feetSpacing: 0
-    globalScale: 0.015
+    globalScale: 1.5
     rootMotionBoneName: ROOT
     hasTranslationDoF: 0
     hasExtraRoot: 1
